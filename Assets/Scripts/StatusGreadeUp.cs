@@ -54,7 +54,7 @@ public class StatusGreadeUp : MonoBehaviour
         {
             money -= moneyUpgradeCost;
             moneyLevel++;
-            moneyIncreaseRate *= 1.3f;
+            moneyIncreaseRate *= 1.05f;
             moneyUpgradeCost = Mathf.RoundToInt(moneyUpgradeCost * 1.1f);
             UpdateMoneyUI();
         }
@@ -66,7 +66,7 @@ public class StatusGreadeUp : MonoBehaviour
         {
             exp -= expUpgradeCost;
             expLevel++;
-            expIncreaseRate *= 1.3f;
+            expIncreaseRate *= 1.05f;
             expUpgradeCost = Mathf.RoundToInt(expUpgradeCost * 1.1f);
             UpdateExpUI();
         }
@@ -95,5 +95,11 @@ public class StatusGreadeUp : MonoBehaviour
         expLevelText.text = "Lv: " + expLevel;
         expCostText.text = "ŽŸ‰ñ•K—vmoney: " + expUpgradeCost;
         rankText.text = "Rank: " + rank;
+    }
+
+    public void CharacterBOC()
+    {
+        money += 1;
+        UpdateMoneyUI();
     }
 }

@@ -5,7 +5,7 @@ public class SelectGames : MonoBehaviour
     //====== PANEL =====
     [SerializeField] private GameObject GamePanel;
     [SerializeField] private GameObject EquipmentPanel;
-    [SerializeField] private GameObject OnlinePanel;
+    [SerializeField] private GameObject SelectPanel;
     [SerializeField] private GameObject ShopPanel;
     [SerializeField] private GameObject ConfigPanel;
 
@@ -19,7 +19,7 @@ public class SelectGames : MonoBehaviour
     {
         GamePanel.SetActive(false);
         EquipmentPanel.SetActive(false);
-        OnlinePanel.SetActive(false);
+        SelectPanel.SetActive(false);
         ShopPanel.SetActive(false);
         ConfigPanel.SetActive(false);
     }
@@ -36,10 +36,10 @@ public class SelectGames : MonoBehaviour
         EquipmentPanel.SetActive(true);
     }
 
-    public void OpenOnlinePanel()
+    public void OpenSelectPanel()
     {
         CloseUI();
-        OnlinePanel.SetActive(true);
+        SelectPanel.SetActive(true);
     }
 
     public void OpenShopPanel()

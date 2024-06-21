@@ -14,7 +14,6 @@ public class StatusGreadeUp : MonoBehaviour
     private int moneyUpgradeCost = 100;
 
     // Exp関連
-    //public Text expText;
     public Text expLevelText;
     public Text expCostText;
     public Text rankText;
@@ -30,6 +29,7 @@ public class StatusGreadeUp : MonoBehaviour
 
     private void Start()
     {
+        LoadData();
         UpdateMoneyUI();
         UpdateExpUI();
     }
@@ -39,8 +39,9 @@ public class StatusGreadeUp : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= 1f)
         {
-            money += Mathf.RoundToInt(moneyLevel * moneyIncreaseRate);
-            exp += Mathf.RoundToInt(expLevel * expIncreaseRate);
+            money += (int)(moneyLevel * moneyIncreaseRate);
+            Debug.Log("Money: " + money); // デバッグメッセージ
+            exp += (int)(expLevel * expIncreaseRate);
             CheckRankUp();
             timer = 0f;
             UpdateMoneyUI();
@@ -91,7 +92,6 @@ public class StatusGreadeUp : MonoBehaviour
 
     private void UpdateExpUI()
     {
-        //expText.text = "Exp: " + exp;
         expLevelText.text = "Lv: " + expLevel;
         expCostText.text = "次回必要money: " + expUpgradeCost;
         rankText.text = "Rank: " + rank;
@@ -101,5 +101,40 @@ public class StatusGreadeUp : MonoBehaviour
     {
         money += 1;
         UpdateMoneyUI();
+    }
+
+    public void SaveData()
+    {
+        PlayerPrefs.SetInt("Money", money);
+        PlayerPrefs.SetInt("MoneyLevel", moneyLevel);
+        PlayerPrefs.SetFloat("MoneyIncreaseRate", moneyIncreaseRate);
+        PlayerPrefs.SetInt("MoneyUpgradeCost", moneyUpgradeCost);
+
+        PlayerPrefs.SetInt("Exp", exp);
+        PlayerPrefs.SetInt("ExpLevel", expLevel);
+        PlayerPrefs.SetFloat("ExpIncreaseRate", expIncreaseRate);
+        PlayerPrefs.SetInt("ExpUpgradeCost", expUpgradeCost);
+        PlayerPrefs.SetInt("Rank", rank);
+        PlayerPrefs.SetInt("NextRankExp", nextRankExp);
+
+        PlayerPrefs.Save();
+    }
+
+    public void LoadData()
+    {
+        if (PlayerPrefs.HasKey("Money"))
+        {
+            money = PlayerPrefs.GetInt("Money");
+            moneyLevel = PlayerPrefs.GetInt("MoneyLevel");
+            moneyIncreaseRate = PlayerPrefs.GetFloat("MoneyIncreaseRate");
+            moneyUpgradeCost = PlayerPrefs.GetInt("MoneyUpgradeCost");
+
+            exp = PlayerPrefs.GetInt("Exp");
+            expLevel = PlayerPrefs.GetInt("ExpLevel");
+            expIncreaseRate = PlayerPrefs.GetFloat("ExpIncreaseRate");
+            expUpgradeCost = PlayerPrefs.GetInt("ExpUpgradeCost");
+            rank = PlayerPrefs.GetInt("Rank");
+            nextRankExp = PlayerPrefs.GetInt("NextRankExp");
+        }
     }
 }

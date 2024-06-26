@@ -11,7 +11,7 @@ public class Shop : MonoBehaviour
     public int stonePrice = 120;
 
     public InputField giftCodeInput;
-    public GameObject giftCodePanel;
+   // public GameObject giftCodePanel;
     public Text giftCodeResultText;
 
     private string googleSheetUrl = "https://docs.google.com/spreadsheets/d/14lPK2sPa89Z2ah_KekS2tpGIwURTWlc0E8BGh_j8KB8/export?format=csv";
@@ -20,12 +20,30 @@ public class Shop : MonoBehaviour
     private Dictionary<string, int> itemInventory = new Dictionary<string, int>();
     private HashSet<string> usedCodes = new HashSet<string>();
 
+    [SerializeField] private GameObject Scroll;
+    [SerializeField] private GameObject ItemBuyPanel;
+    [SerializeField] private GameObject CharacterGatyaPanel;
+    [SerializeField] private GameObject BukiPanel;
+    [SerializeField] private GameObject GiftCodePanel;
+    [SerializeField] private GameObject HelpPanel;
+
     private void Start()
     {
         // èâä˙ílÇê›íË
         itemInventory["êŒ"] = stone;
         UpdateStoneUI();
-        giftCodePanel.SetActive(false);
+        AllFalse();
+        Scroll.SetActive(true);
+    }
+
+    private void AllFalse()
+    {
+        Scroll.SetActive(false);
+        ItemBuyPanel.SetActive(false);
+        CharacterGatyaPanel.SetActive(false);
+        BukiPanel.SetActive(false);
+        GiftCodePanel.SetActive(false);
+        HelpPanel.SetActive(false);
     }
 
     public void PurchaseStone()
@@ -34,15 +52,6 @@ public class Shop : MonoBehaviour
         UpdateStoneUI();
     }
 
-    public void OpenGiftCodePanel()
-    {
-        giftCodePanel.SetActive(true);
-    }
-
-    public void CloseGiftCodePanel()
-    {
-        giftCodePanel.SetActive(false);
-    }
 
     public void RedeemGiftCode()
     {
@@ -165,5 +174,41 @@ public class Shop : MonoBehaviour
         {
             Debug.LogWarning("stoneText is not set in the Inspector.");
         }
+    }
+
+    public void RetrunMenu()
+    {
+        AllFalse();
+        Scroll.SetActive(true);
+    }
+
+    public void OpenItemBuy()
+    {
+        AllFalse();
+        ItemBuyPanel.SetActive(true);
+    }
+
+    public void OpenKyaraGatya()
+    {
+        AllFalse();
+        CharacterGatyaPanel.SetActive(true);
+    }
+
+    public void OpenBuki()
+    {
+        AllFalse();
+        BukiPanel.SetActive(true);
+    }
+
+    public void OpenGift()
+    {
+        AllFalse();
+        GiftCodePanel.SetActive(true);
+    }
+
+    public void OpenHelp()
+    {
+        AllFalse();
+        HelpPanel.SetActive(true);
     }
 }

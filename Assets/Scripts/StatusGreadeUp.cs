@@ -40,7 +40,7 @@ public class StatusGreadeUp : MonoBehaviour
         if (timer >= 1f)
         {
             money += (int)(moneyLevel * moneyIncreaseRate);
-            Debug.Log("Money: " + money); // デバッグメッセージ
+           // Debug.Log("Money: " + money); // デバッグメッセージ
             exp += (int)(expLevel * expIncreaseRate);
             CheckRankUp();
             timer = 0f;
